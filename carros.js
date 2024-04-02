@@ -1,0 +1,64 @@
+function Veiculo(marca, modelo, cor) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.cor = cor;
+    
+    this.descricao = function() {
+        return `Veículo ${this.marca} ${this.modelo}, cor ${this.cor}`;
+    }
+}
+
+function Carro(marca, modelo, cor, custo) {
+    Veiculo.call(this, marca, modelo, cor);
+
+    let _custo = custo;
+    this.getCusto = function() {
+        return _custo;
+    }
+
+    this.setCusto = function(valor) {
+        if(typeof valor === 'number') {
+            _custo = valor;
+        }   
+    }
+
+    this.aumentoInflacao = function () {
+        const novoCusto = this.getCusto() * 1.1;
+        _custo = novoCusto;
+    }
+}
+
+
+function Moto(marca, modelo, cilindradas, custo) {
+    Veiculo.call(this, marca, modelo);
+    this.cilindradas = cilindradas;
+
+    let _custo = custo;
+    this.getCusto = function() {
+        return _custo;
+    }
+
+    this.setCusto = function(valor) {
+        if(typeof valor === 'number') {
+            _custo = valor;
+        }   
+    }
+
+    this.aumentoInflacao = function () {
+        const novoCusto = this.getCusto() * 1.1;
+        _custo = novoCusto;
+    }
+    
+    this.descricao = function() {
+        return `Moto ${this.marca} ${this.modelo}, cilindradas ${this.cilindradas}`;
+    }
+}
+
+const carro1 = new Carro('Toyota', 'Corolla', 'Prata', 20000);
+const moto1 = new Moto('Yamaha', 'MT-07', '700', 10000);
+
+carro1.aumentoInflacao();
+console.log(carro1.descricao(),carro1.getCusto()); 
+
+moto1.aumentoInflacao();
+console.log(moto1.descricao(),moto1.getCusto()); 
